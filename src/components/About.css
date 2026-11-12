@@ -1,0 +1,62 @@
+.about__inner {
+  max-width: 1010px;
+}
+
+.about .section-header {
+  margin-bottom: 56px;
+}
+
+.about__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.about-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 20px 28px;
+  text-align: center;
+}
+
+.about-card h3 {
+  margin: 24px 0 8px;
+  font-size: 1.1rem;
+  letter-spacing: 0;
+}
+
+.about-card p {
+  font-size: 0.88rem;
+}
+
+.about__bio {
+  margin-top: 48px;
+  padding: 36px 36px;
+  text-align: center;
+}
+
+.about__bio:hover {
+  transform: none;
+}
+
+.about__bio p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.about__bio p + p {
+  margin-top: 24px;
+}
+
+@media (max-width: 760px) {
+  .about__cards {
+    grid-template-columns: 1fr;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  .about__bio {
+    padding: 28px 22px;
+  }
+}

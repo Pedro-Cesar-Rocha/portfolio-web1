@@ -1,8 +1,11 @@
-import Hero from './components/Hero'
+import About from './components/About'
 import Challenges from './components/Challenges'
+import Contact from './components/Contact'
+import Differentials from './components/Differentials'
+import Footer from './components/Footer'
+import Hero from './components/Hero'
 import Method from './components/Method'
 import Services from './components/Services'
-import Differentials from './components/Differentials'
 
 export default function App() {
   return (
@@ -13,7 +16,10 @@ export default function App() {
         <Method />
         <Services />
         <Differentials />
+        <About />
+        <Contact />
       </main>
+      <Footer />
     </>
   )
 }
