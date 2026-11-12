@@ -1,0 +1,28 @@
+.challenges__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.challenge-card {
+  padding: 32px 32px 44px;
+}
+
+.challenge-card h3 {
+  margin: 36px 0 16px;
+  font-size: 1.45rem;
+  letter-spacing: -0.01em;
+}
+
+.challenge-card p {
+  font-size: 0.98rem;
+  line-height: 1.75;
+}
+
+@media (max-width: 960px) {
+  .challenges__grid {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+}
