@@ -1,0 +1,15 @@
+.section-header {
+  max-width: 780px;
+  margin: 0 auto 64px;
+  text-align: center;
+}
+
+.section-header h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.section-header p {
+  margin-top: 20px;
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
