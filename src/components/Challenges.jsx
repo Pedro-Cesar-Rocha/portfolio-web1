@@ -1,6 +1,6 @@
 import { challenges } from '../data/content'
-import Reveal from './Reveal'
 import SectionHeader from './SectionHeader'
+import Window from './Window'
 import './Challenges.css'
 
 export default function Challenges() {
@@ -8,6 +8,7 @@ export default function Challenges() {
     <section id="desafios" className="section challenges">
       <div className="container">
         <SectionHeader
+          cmd={challenges.cmd}
           title={challenges.titleTop}
           highlight={challenges.titleHighlight}
           subtitle={challenges.subtitle}
@@ -15,14 +16,23 @@ export default function Challenges() {
         />
 
         <div className="challenges__grid">
-          {challenges.items.map(({ icon: Icon, title, text }, index) => (
-            <Reveal as="article" key={title} className="card challenge-card" delay={index * 120}>
-              <span className="icon-tile">
-                <Icon size={24} aria-hidden="true" />
+          {challenges.items.map(({ icon: Icon, file, title, text }, index) => (
+            <Window
+              key={title}
+              title={file}
+              meta={`0${index + 1}`}
+              delay={index * 120}
+              bodyClassName="challenge"
+            >
+              <span className="icon-box">
+                <Icon size={20} aria-hidden="true" />
               </span>
-              <h3>{title}</h3>
+              <h3>
+                <span className="dim">## </span>
+                {title}
+              </h3>
               <p>{text}</p>
-            </Reveal>
+            </Window>
           ))}
         </div>
       </div>

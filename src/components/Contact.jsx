@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { CheckCircle2, Send } from 'lucide-react'
 import { brand, contact } from '../data/content'
-import Reveal from './Reveal'
+import Prompt from './Prompt'
+import Window from './Window'
 import './Contact.css'
 
 const initialForm = { name: '', email: '', phone: '', message: '' }
@@ -9,10 +9,10 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 function validate(form) {
   const errors = {}
-  if (!form.name.trim()) errors.name = 'Informe seu nome.'
-  if (!form.email.trim()) errors.email = 'Informe seu email.'
-  else if (!EMAIL_PATTERN.test(form.email)) errors.email = 'Email inválido.'
-  if (!form.message.trim()) errors.message = 'Conte um pouco sobre o projeto.'
+  if (!form.name.trim()) errors.name = 'campo obrigatório: informe seu nome'
+  if (!form.email.trim()) errors.email = 'campo obrigatório: informe seu email'
+  else if (!EMAIL_PATTERN.test(form.email)) errors.email = 'formato de email inválido'
+  if (!form.message.trim()) errors.message = 'campo obrigatório: conte um pouco sobre o projeto'
   return errors
 }
 
@@ -57,33 +57,49 @@ export default function Contact() {
   return (
     <section id="contato" className="section contact">
       <div className="container">
-        <Reveal className="card contact__card">
+        <Window
+          as="div"
+          title="contato.sh"
+          meta="bash"
+          hover={false}
+          className="contact__window"
+          bodyClassName="contact__body"
+        >
+          <Prompt cmd={contact.cmd} />
+
           <header className="contact__header">
             <h2>
               {contact.titleTop}
               <br />
               <span className="highlight">{contact.titleHighlight}</span>
             </h2>
-            <blockquote>&ldquo;{contact.quote}&rdquo;</blockquote>
-            <p className="contact__mission">{contact.mission}</p>
+            <blockquote>
+              <span className="dim">/* </span>
+              {contact.quote}
+              <span className="dim"> */</span>
+            </blockquote>
+            <p className="contact__mission">
+              <span className="dim">{'// '}</span>
+              {contact.mission}
+            </p>
           </header>
 
           <form className="contact__form" onSubmit={handleSubmit} noValidate>
             <div className="contact__row">
-              <Field label="Nome" name="name" required error={errors.name}>
+              <Field label="nome" name="name" required error={errors.name}>
                 <input
                   id="name"
                   name="name"
                   type="text"
                   autoComplete="name"
-                  placeholder="Como posso te chamar?"
+                  placeholder="como posso te chamar?"
                   value={form.name}
                   onChange={handleChange}
                   aria-invalid={Boolean(errors.name)}
                 />
               </Field>
 
-              <Field label="Email" name="email" required error={errors.email}>
+              <Field label="email" name="email" required error={errors.email}>
                 <input
                   id="email"
                   name="email"
@@ -97,7 +113,7 @@ export default function Contact() {
               </Field>
             </div>
 
-            <Field label="Telefone (opcional)" name="phone">
+            <Field label="telefone" hint="opcional" name="phone">
               <input
                 id="phone"
                 name="phone"
@@ -109,47 +125,51 @@ export default function Contact() {
               />
             </Field>
 
-            <Field label="Sobre o projeto" name="message" required error={errors.message}>
+            <Field label="projeto" name="message" required error={errors.message}>
               <textarea
                 id="message"
                 name="message"
                 rows={5}
-                placeholder="Qual problema você quer resolver? Quem vai usar? Existe algum prazo?"
+                placeholder="qual problema você quer resolver? quem vai usar? existe algum prazo?"
                 value={form.message}
                 onChange={handleChange}
                 aria-invalid={Boolean(errors.message)}
               />
             </Field>
 
-            <p className="contact__note">{contact.note}</p>
-
-            <button type="submit" className="contact__submit">
-              <Send size={17} aria-hidden="true" />
+            <button type="submit" className="btn btn--primary contact__submit">
+              <span className="btn__sigil">$</span>
               {contact.button}
             </button>
 
+            <p className="contact__note">
+              <span className="dim">{'# '}</span>
+              {contact.note}
+            </p>
+
             {sent && (
               <p className="contact__success" role="status">
-                <CheckCircle2 size={18} aria-hidden="true" />
-                Seu aplicativo de email foi aberto com a mensagem pronta. É só enviar!
+                <span className="highlight">[ok]</span> seu app de email foi aberto com a mensagem
+                pronta. é só enviar!
               </p>
             )}
           </form>
-        </Reveal>
+        </Window>
       </div>
     </section>
   )
 }
 
-function Field({ label, name, required = false, error, children }) {
+function Field({ label, hint, name, required = false, error, children }) {
   return (
     <div className={`field${error ? ' field--error' : ''}`}>
       <label htmlFor={name}>
-        {label}
-        {required && <span aria-hidden="true"> *</span>}
+        <span className="highlight">&gt;</span> {label}
+        {required && <span className="field__req"> *</span>}
+        {hint && <span className="dim"> ({hint})</span>}
       </label>
       {children}
-      {error && <span className="field__error">{error}</span>}
+      {error && <span className="field__error">error: {error}</span>}
     </div>
   )
 }

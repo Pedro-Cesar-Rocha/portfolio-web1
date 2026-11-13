@@ -1,38 +1,68 @@
-import { ArrowRight, Code2 } from 'lucide-react'
-import { brand, hero } from '../data/content'
-import ParticlesBackground from './ParticlesBackground'
+import { hero } from '../data/content'
+import { useTypewriter } from '../hooks/useTypewriter'
+import CodeRain from './CodeRain'
+import Prompt from './Prompt'
+import Window from './Window'
 import './Hero.css'
 
 export default function Hero() {
+  const { typed, done } = useTypewriter(hero.titleHighlight, { startDelay: 900 })
+
   return (
     <section id="inicio" className="hero">
-      <div className="hero__glow" aria-hidden="true" />
-      <ParticlesBackground />
+      <CodeRain />
+      <div className="hero__fade" aria-hidden="true" />
 
       <div className="container hero__content">
-        <span className="hero__badge">
-          <Code2 size={22} strokeWidth={2.2} aria-hidden="true" />
-          {brand.name}
-          {brand.suffix}
-        </span>
+        <Window
+          as="div"
+          title={hero.windowTitle}
+          meta="80×24"
+          hover={false}
+          reveal={false}
+          className="hero__window"
+          bodyClassName="hero__body"
+        >
+          <Prompt cmd="whoami" />
+          <p className="hero__output">{hero.whoamiOutput}</p>
 
-        <h1 className="hero__title">
-          {hero.titleTop}
-          <br />
-          <span className="highlight">{hero.titleHighlight}</span>
-        </h1>
+          <Prompt cmd="cat missao.txt" className="hero__mission-cmd" />
 
-        <p className="hero__subtitle">{hero.subtitle}</p>
+          <h1 className="hero__title" aria-label={`${hero.titleTop} ${hero.titleHighlight}`}>
+            <span aria-hidden="true">
+              <span className="hero__arrow">&gt;</span> {hero.titleTop}
+              <br />
+              <span className="highlight hero__typed">
+                {typed}
+                {!done && <span className="cursor" />}
+              </span>
+            </span>
+          </h1>
 
-        <div className="hero__actions">
-          <a href={hero.primaryCta.href} className="btn btn--primary">
-            {hero.primaryCta.label}
-            <ArrowRight size={18} aria-hidden="true" />
-          </a>
-          <a href={hero.secondaryCta.href} className="btn btn--ghost">
-            {hero.secondaryCta.label}
-          </a>
-        </div>
+          <p className="hero__subtitle">
+            <span className="dim">{'// '}</span>
+            {hero.subtitle}
+          </p>
+
+          <div className="hero__actions">
+            <a href={hero.primaryCta.href} className="btn btn--primary">
+              <span className="btn__sigil">$</span>
+              {hero.primaryCta.label}
+            </a>
+            <a href={hero.secondaryCta.href} className="btn btn--ghost">
+              <span className="btn__sigil">$</span>
+              {hero.secondaryCta.label}
+            </a>
+          </div>
+
+          <Prompt cmd="" className="hero__idle">
+            <span className="cursor" />
+          </Prompt>
+        </Window>
+
+        <a href="#desafios" className="hero__hint">
+          scroll <span className="highlight">↓</span>
+        </a>
       </div>
     </section>
   )

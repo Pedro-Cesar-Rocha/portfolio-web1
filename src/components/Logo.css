@@ -2,15 +2,15 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--accent);
+  color: var(--text-h);
   font-weight: 800;
-  font-size: 1rem;
-  letter-spacing: 0.04em;
+  font-size: 0.95rem;
 }
 
-.logo small {
-  font-size: inherit;
-  color: var(--accent-light);
-  font-weight: 600;
-  letter-spacing: 0;
+.logo__prompt {
+  color: var(--accent);
+}
+
+.logo__suffix {
+  color: var(--accent);
 }

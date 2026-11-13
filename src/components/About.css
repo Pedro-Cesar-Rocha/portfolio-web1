@@ -1,62 +1,96 @@
-.about__inner {
-  max-width: 1010px;
-}
-
-.about .section-header {
-  margin-bottom: 56px;
-}
-
-.about__cards {
+.about__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 22px;
+  align-items: stretch;
 }
 
-.about-card {
+.neofetch {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 24px 20px 28px;
-  text-align: center;
+  gap: 32px;
+  padding: 32px 28px;
 }
 
-.about-card h3 {
-  margin: 24px 0 8px;
-  font-size: 1.1rem;
+.neofetch__logo {
+  margin: 0;
+  flex-shrink: 0;
+  font: inherit;
+  font-size: 0.8rem;
+  line-height: 1;
   letter-spacing: 0;
+  color: var(--accent);
+  text-shadow: 0 0 18px rgba(180, 244, 97, 0.35);
 }
 
-.about-card p {
+.neofetch__info {
+  min-width: 0;
   font-size: 0.88rem;
 }
 
+.neofetch__user {
+  color: var(--text-h);
+  font-weight: 800;
+}
+
+.neofetch__info dl {
+  margin: 6px 0 0;
+}
+
+.neofetch__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 8px;
+  line-height: 1.9;
+}
+
+.neofetch__row dt {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.neofetch__row dd {
+  margin: 0;
+  color: var(--text-h);
+}
+
+.neofetch__palette {
+  display: flex;
+  margin-top: 16px;
+}
+
+.neofetch__palette span {
+  width: 24px;
+  height: 14px;
+}
+
 .about__bio {
-  margin-top: 48px;
-  padding: 36px 36px;
-  text-align: center;
+  display: grid;
+  align-content: start;
+  gap: 18px;
+  padding: 28px;
 }
 
-.about__bio:hover {
-  transform: none;
+.about__bio p:not(.prompt) {
+  font-size: 0.9rem;
+  line-height: 1.85;
 }
 
-.about__bio p {
-  font-size: 1.05rem;
-  line-height: 1.8;
-}
-
-.about__bio p + p {
-  margin-top: 24px;
-}
-
-@media (max-width: 760px) {
-  .about__cards {
+@media (max-width: 1000px) {
+  .about__grid {
     grid-template-columns: 1fr;
-    max-width: 380px;
-    margin: 0 auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .neofetch {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px 20px;
   }
 
-  .about__bio {
-    padding: 28px 22px;
+  .neofetch__logo {
+    font-size: 0.66rem;
   }
 }

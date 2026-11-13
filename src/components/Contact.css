@@ -1,171 +1,120 @@
-.contact {
-  position: relative;
-  padding-top: 60px;
-}
-
-.contact::before {
-  /* brilho roxo atrás do card */
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: min(900px, 90%);
-  height: 160px;
-  transform: translateX(-50%);
-  background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.14), transparent 70%);
-  filter: blur(20px);
-  pointer-events: none;
-}
-
-.contact__card {
-  max-width: 830px;
+.contact__window {
+  max-width: 880px;
   margin: 0 auto;
-  padding: 52px 48px 40px;
-  background: linear-gradient(135deg, rgba(14, 18, 34, 0.95) 0%, rgba(30, 16, 44, 0.9) 100%);
-  box-shadow: 0 0 60px -10px rgba(139, 92, 246, 0.25);
+  box-shadow: 0 40px 120px -50px rgba(180, 244, 97, 0.3);
 }
 
-.contact__card:hover {
-  transform: none;
-  box-shadow: 0 0 70px -10px rgba(139, 92, 246, 0.32);
+.contact__body {
+  padding: 32px 40px 36px;
 }
 
 .contact__header {
-  text-align: center;
+  margin-top: 24px;
 }
 
 .contact__header h2 {
-  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  font-size: clamp(1.7rem, 3.6vw, 2.5rem);
 }
 
 .contact__header blockquote {
-  margin: 28px 0 0;
-  font-size: 1.15rem;
+  margin: 24px 0 0;
+  font-size: 0.95rem;
   font-style: italic;
-  line-height: 1.6;
+  color: var(--amber);
 }
 
 .contact__mission {
-  margin-top: 28px;
-  font-size: 1.05rem;
-  font-style: italic;
-  line-height: 1.7;
+  margin-top: 14px;
+  font-size: 0.92rem;
+  line-height: 1.75;
 }
 
 .contact__form {
-  margin-top: 44px;
   display: grid;
-  gap: 24px;
+  gap: 22px;
+  margin-top: 36px;
+  padding-top: 32px;
+  border-top: 1px dashed var(--border);
 }
 
 .contact__row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: 22px;
 }
 
 .field {
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 .field label {
   color: var(--text-h);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 700;
+}
+
+.field__req {
+  color: var(--red);
 }
 
 .field input,
 .field textarea {
   width: 100%;
   padding: 12px 14px;
-  border-radius: 9px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(5, 7, 14, 0.75);
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--bg);
   color: var(--text-h);
   font: inherit;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
+  caret-color: var(--accent);
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
 }
 
 .field textarea {
-  min-height: 118px;
+  min-height: 130px;
   resize: vertical;
 }
 
 .field input::placeholder,
 .field textarea::placeholder {
-  color: #7d8499;
+  color: var(--text-dim);
 }
 
 .field input:focus,
 .field textarea:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.18);
+  box-shadow: 0 0 0 3px rgba(180, 244, 97, 0.12);
 }
 
 .field--error input,
 .field--error textarea {
-  border-color: #f87171;
+  border-color: var(--red);
 }
 
 .field__error {
-  color: #f87171;
-  font-size: 0.82rem;
-}
-
-.contact__note {
-  text-align: center;
-  font-style: italic;
-  font-size: 0.95rem;
+  color: var(--red);
+  font-size: 0.78rem;
 }
 
 .contact__submit {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
   width: 100%;
+  margin-top: 6px;
   padding: 14px;
-  border-radius: 10px;
-  border: 1px solid var(--border-strong);
-  background: rgba(139, 92, 246, 0.12);
-  color: var(--accent-light);
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    border-color 0.2s ease;
 }
 
-.contact__submit:hover {
-  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-blue) 100%);
-  border-color: transparent;
-  color: #fff;
-}
-
-.contact__submit:focus-visible {
-  outline: 2px solid var(--accent-light);
-  outline-offset: 3px;
-}
-
+.contact__note,
 .contact__success {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  color: #4ade80;
-  font-size: 0.92rem;
+  font-size: 0.82rem;
 }
 
 @media (max-width: 680px) {
-  .contact__card {
-    padding: 40px 22px 32px;
+  .contact__body {
+    padding: 24px 18px 28px;
   }
 
   .contact__row {

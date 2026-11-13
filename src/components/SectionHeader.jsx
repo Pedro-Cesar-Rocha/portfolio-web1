@@ -1,12 +1,14 @@
+import Prompt from './Prompt'
 import Reveal from './Reveal'
 import './SectionHeader.css'
 
 /**
- * Título centralizado das seções.
- * - `stacked`: texto normal em uma linha e destaque roxo na linha de baixo.
- * - `highlightFirst`: destaque roxo antes do texto normal (ex.: "BASE: ...").
+ * Cabeçalho das seções: linha de comando + título com destaque verde.
+ * - `stacked`: destaque na linha de baixo.
+ * - `highlightFirst`: destaque antes do texto (ex.: "BASE: ...").
  */
 export default function SectionHeader({
+  cmd,
   title,
   highlight,
   subtitle,
@@ -17,13 +19,16 @@ export default function SectionHeader({
 
   return (
     <Reveal className="section-header">
+      {cmd && <Prompt cmd={cmd} className="section-header__cmd" />}
       <h2>
-        {highlightFirst && (
+        <span className="section-header__hash" aria-hidden="true">
+          #{' '}
+        </span>
+        {highlightFirst ? (
           <>
             {accent} {title}
           </>
-        )}
-        {!highlightFirst && (
+        ) : (
           <>
             {title}
             {accent && (stacked ? <br /> : ' ')}
@@ -31,7 +36,14 @@ export default function SectionHeader({
           </>
         )}
       </h2>
-      {subtitle && <p>{subtitle}</p>}
+      {subtitle && (
+        <p className="section-header__sub">
+          <span className="dim" aria-hidden="true">
+            {'// '}
+          </span>
+          {subtitle}
+        </p>
+      )}
     </Reveal>
   )
 }

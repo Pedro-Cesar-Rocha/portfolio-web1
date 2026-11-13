@@ -1,13 +1,17 @@
+import { Check } from 'lucide-react'
 import { brand, differentials } from '../data/content'
-import Reveal from './Reveal'
 import SectionHeader from './SectionHeader'
+import Window from './Window'
 import './Differentials.css'
 
 export default function Differentials() {
+  const total = differentials.items.length
+
   return (
     <section id="diferenciais" className="section differentials">
       <div className="container">
         <SectionHeader
+          cmd={differentials.cmd}
           title={differentials.titleTop}
           highlight={`${brand.name}${brand.suffix}`}
           subtitle={differentials.subtitle}
@@ -15,15 +19,28 @@ export default function Differentials() {
 
         <div className="differentials__grid">
           {differentials.items.map(({ icon: Icon, title, text }, index) => (
-            <Reveal as="article" key={title} className="card differential-card" delay={index * 110}>
-              <span className="icon-tile icon-tile--round">
-                <Icon size={26} aria-hidden="true" />
-              </span>
+            <Window
+              key={title}
+              title={`test_0${index + 1}.spec`}
+              delay={index * 110}
+              bodyClassName="diff"
+            >
+              <div className="diff__head">
+                <span className="diff__badge">
+                  <Check size={14} strokeWidth={3} aria-hidden="true" /> PASS
+                </span>
+                <Icon size={20} className="diff__icon" aria-hidden="true" />
+              </div>
               <h3>{title}</h3>
               <p>{text}</p>
-            </Reveal>
+            </Window>
           ))}
         </div>
+
+        <p className="differentials__summary">
+          <span className="highlight">Tests: {total} passed</span>
+          <span className="dim">, {total} total</span>
+        </p>
       </div>
     </section>
   )

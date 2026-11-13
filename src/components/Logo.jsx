@@ -1,14 +1,19 @@
-import { Code2 } from 'lucide-react'
 import { brand } from '../data/content'
 import './Logo.css'
 
 export default function Logo({ className = '' }) {
   return (
-    <a href="#inicio" className={`logo ${className}`.trim()} aria-label={`${brand.name}${brand.suffix} — início`}>
-      <Code2 size={22} strokeWidth={2.2} aria-hidden="true" />
+    <a
+      href="#inicio"
+      className={`logo ${className}`.trim()}
+      aria-label={`${brand.name}${brand.suffix} — início`}
+    >
+      <span className="logo__prompt" aria-hidden="true">
+        &gt;_
+      </span>
       <span>
-        {brand.name}
-        <small>{brand.suffix}</small>
+        {brand.name.toLowerCase()}
+        <span className="logo__suffix">{brand.suffix}</span>
       </span>
     </a>
   )

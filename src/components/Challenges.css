@@ -1,28 +1,27 @@
 .challenges__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 22px;
 }
 
-.challenge-card {
-  padding: 32px 32px 44px;
+.challenge {
+  padding: 28px 26px 32px;
 }
 
-.challenge-card h3 {
-  margin: 36px 0 16px;
-  font-size: 1.45rem;
-  letter-spacing: -0.01em;
+.challenge h3 {
+  margin: 28px 0 14px;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
 }
 
-.challenge-card p {
-  font-size: 0.98rem;
-  line-height: 1.75;
+.challenge p {
+  font-size: 0.9rem;
+  line-height: 1.8;
 }
 
 @media (max-width: 960px) {
   .challenges__grid {
     grid-template-columns: 1fr;
-    max-width: 560px;
-    margin: 0 auto;
+    max-width: 600px;
   }
 }

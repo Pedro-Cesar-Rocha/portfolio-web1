@@ -1,27 +1,39 @@
 import { services } from '../data/content'
-import Reveal from './Reveal'
 import SectionHeader from './SectionHeader'
+import Window from './Window'
 import './Services.css'
 
 export default function Services() {
   return (
     <section id="servicos" className="section services">
       <div className="container">
-        <SectionHeader title={services.title} subtitle={services.subtitle} />
+        <SectionHeader cmd={services.cmd} title={services.title} subtitle={services.subtitle} />
 
-        <div className="services__grid">
-          {services.items.map(({ icon: Icon, title, text }, index) => (
-            <Reveal as="article" key={title} className="card service-card" delay={(index % 2) * 120}>
-              <span className="icon-tile">
-                <Icon size={22} aria-hidden="true" />
-              </span>
-              <div>
-                <h3>{title}</h3>
-                <p>{text}</p>
+        <Window
+          title="~/servicos"
+          meta={`total ${services.items.length}`}
+          hover={false}
+          className="services__window"
+          bodyClassName="services__list"
+        >
+          {services.items.map(({ icon: Icon, file, title, text }) => (
+            <article key={title} className="service">
+              <p className="service__ls" aria-hidden="true">
+                <span className="dim">drwxr-xr-x pedro</span>{' '}
+                <span className="service__file">{file}</span>
+              </p>
+              <div className="service__content">
+                <span className="icon-box">
+                  <Icon size={20} aria-hidden="true" />
+                </span>
+                <div>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </div>
               </div>
-            </Reveal>
+            </article>
           ))}
-        </div>
+        </Window>
       </div>
     </section>
   )
